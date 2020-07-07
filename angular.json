@@ -25,7 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.less"
@@ -123,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CesiumGallery"
+    }
+  },
+  "defaultProject": "CesiumGallery",
+  "cli": {
+    "analytics": "0ace8576-7213-4a22-bb1d-459a9599b441"
+  }
 }
