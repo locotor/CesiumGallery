@@ -1,53 +1,65 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Ant Design Of Angular</h1>
-      </a>
+      <i class="logo-icon" nz-icon nzType="global" nzTheme="outline"></i>
+      <h1>Cesium Gallery</h1>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
-      </li>
+      <ng-container *ngFor="let group of demosData">
+        <li nz-submenu *ngIf="group.type === 'sub-menu'; else item" [nzTitle]="group.title" [(nzOpen)]="group.openList">
+          <ul>
+            <li nz-menu-item *ngFor="let child of group.subList">{{ child.title }}</li>
+          </ul>
+        </li>
+        <ng-template #item>
+          <li nz-menu-item>{{ group.title }}</li>
+        </ng-template>
+      </ng-container>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
         </span>
       </div>
     </nz-header>
     <nz-content>
       <div class="inner-content">
-        <router-outlet></router-outlet>
+        <ng-container *ngFor="let category of demosData">
+          <div class="category" *ngIf="category.type === 'sub-menu'; else item2">
+            <ng-container *ngFor="let subData of category.subList">
+              <h2 [id]="subData.title" class="anchor">{{ subData.title }}</h2>
+              <div class="demos-container">
+                <ng-container *ngFor="let demo of subData.demos">
+                  <nz-card class="demo-card" nzHoverable [nzCover]="subDemoCoverTemplate">
+                    <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
+                  </nz-card>
+                  <ng-template #subDemoCoverTemplate>
+                    <img alt="example" [src]='demo.img' />
+                  </ng-template>
+                </ng-container>
+              </div>
+            </ng-container>
+          </div>
+          <ng-template #item2>
+            <div class="category">
+              <h2 [id]="category.title" class="anchor">{{ category.title }}</h2>
+              <div class="demos-container">
+                <ng-container *ngFor="let demo of category.demos">
+                  <nz-card class="demo-card" nzHoverable [nzCover]="demoCoverTemplate">
+                    <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
+                  </nz-card>
+                  <ng-template #demoCoverTemplate>
+                    <img alt="example" [src]='demo.img' />
+                  </ng-template>
+                </ng-container>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
       </div>
     </nz-content>
   </nz-layout>
