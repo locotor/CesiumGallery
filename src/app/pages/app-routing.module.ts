@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GeneMapServiceComponent } from './gene-map-service/gene-map-service.component';
+import { SharedModule } from '@shared/shared.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/' },
-  { path: 'gene-map-service', component: GeneMapServiceComponent }
 ];
 
 @NgModule({
-  declarations: [GeneMapServiceComponent],
-  imports: [RouterModule.forRoot(routes)],
+  declarations: [],
+  imports: [
+    RouterModule.forRoot(routes),
+    SharedModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

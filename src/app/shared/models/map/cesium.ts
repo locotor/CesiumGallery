@@ -1,3 +1,5 @@
+import { SkyAtmosphere } from 'cesium';
+
 export interface CesiumViewerOption {
   geocoder?: boolean;
   homeButton?: boolean;
@@ -11,7 +13,7 @@ export interface CesiumViewerOption {
   fullscreenButton?: boolean;
   infoBox?: boolean;
   selectionIndicator?: boolean;
-  skyAtmosphere?: boolean;
+  skyAtmosphere?: SkyAtmosphere | false;
   imageryProvider?: any;
   terrainProvider?: any;
 }

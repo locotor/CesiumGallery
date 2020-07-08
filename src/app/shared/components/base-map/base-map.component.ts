@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { CesiumViewerOption } from 'src/app/@shared/models/models';
+import { CesiumViewerOption } from '@shared/models/models';
+import * as Cesium from 'cesium';
 
 @Component({
   selector: 'app-base-map',
@@ -11,7 +12,7 @@ export class BaseMapComponent implements OnInit, AfterViewInit {
   @Input() viewerOpts: CesiumViewerOption;
   @Input() public showBaseMsg = false;
 
-  @ViewChild('cesiumContainer', null) map: ElementRef;
+  @ViewChild('cesiumContainer') map: ElementRef;
 
   public viewer: any;
   private scene: any;
