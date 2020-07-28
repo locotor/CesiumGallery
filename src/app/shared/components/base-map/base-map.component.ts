@@ -1,35 +1,24 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CesiumViewerOption } from '@shared/models/models';
 import * as Cesium from 'cesium';
+import { CameraProperty } from '@shared/models/map/camera-property';
 
 @Component({
   selector: 'app-base-map',
   templateUrl: './base-map.component.html',
   styleUrls: ['./base-map.component.less']
 })
-export class BaseMapComponent implements OnInit, AfterViewInit {
+export class BaseMapComponent implements AfterViewInit {
 
   @Input() viewerOpts: CesiumViewerOption;
   @Input() public showBaseMsg = false;
-
   @ViewChild('cesiumContainer') map: ElementRef;
-
   public viewer: any;
   private scene: any;
   private camera: any;
-
-  public cameraMsg = {
-    lon: '',
-    lat: '',
-    ele: '',
-    head: '',
-    alt: ''
-  };
+  public cameraMsg: CameraProperty;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   ngAfterViewInit() {
     this.initMap();

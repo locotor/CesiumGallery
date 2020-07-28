@@ -1,4 +1,5 @@
 <nz-layout class="app-layout">
+  <!-- side navigation bar -->
   <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
     [nzTrigger]="null">
     <div class="sidebar-logo">
@@ -6,16 +7,7 @@
       <h1>Cesium Gallery</h1>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <ng-container *ngFor="let group of demosData">
-        <li nz-submenu *ngIf="group.type === 'sub-menu'; else item" [nzTitle]="group.title" [(nzOpen)]="group.openList">
-          <ul>
-            <li nz-menu-item *ngFor="let child of group.subList">{{ child.title }}</li>
-          </ul>
-        </li>
-        <ng-template #item>
-          <li nz-menu-item>{{ group.title }}</li>
-        </ng-template>
-      </ng-container>
+        <li nz-menu-item *ngFor="let group of demosData">{{ group.title }}</li>
     </ul>
   </nz-sider>
   <nz-layout>
@@ -26,39 +18,23 @@
         </span>
       </div>
     </nz-header>
+    <!-- site content container -->
     <nz-content>
       <div class="inner-content">
         <ng-container *ngFor="let category of demosData">
-          <div class="category" *ngIf="category.type === 'sub-menu'; else item2">
-            <ng-container *ngFor="let subData of category.subList">
-              <h2 [id]="subData.title" class="anchor">{{ subData.title }}</h2>
-              <div class="demos-container">
-                <ng-container *ngFor="let demo of subData.demos">
-                  <nz-card class="demo-card" nzHoverable [nzCover]="subDemoCoverTemplate">
-                    <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
-                  </nz-card>
-                  <ng-template #subDemoCoverTemplate>
-                    <img alt="example" [src]='demo.img' />
-                  </ng-template>
-                </ng-container>
-              </div>
-            </ng-container>
-          </div>
-          <ng-template #item2>
-            <div class="category">
-              <h2 [id]="category.title" class="anchor">{{ category.title }}</h2>
-              <div class="demos-container">
-                <ng-container *ngFor="let demo of category.demos">
-                  <nz-card class="demo-card" nzHoverable [nzCover]="demoCoverTemplate">
-                    <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
-                  </nz-card>
-                  <ng-template #demoCoverTemplate>
-                    <img alt="example" [src]='demo.img' />
-                  </ng-template>
-                </ng-container>
-              </div>
+          <div class="category">
+            <h2 [id]="category.title" class="anchor">{{ category.title }}</h2>
+            <div class="demos-container">
+              <ng-container *ngFor="let demo of category.demos">
+                <nz-card class="demo-card" nzHoverable [nzCover]="demoCoverTemplate">
+                  <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
+                </nz-card>
+                <ng-template #demoCoverTemplate>
+                  <img alt="example" [src]='demo.img' />
+                </ng-template>
+              </ng-container>
             </div>
-          </ng-template>
+          </div>
         </ng-container>
       </div>
     </nz-content>

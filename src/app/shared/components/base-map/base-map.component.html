@@ -1,10 +1,9 @@
-<div class="cesium-container" #cesiumContainer>
-</div>
+<div class="cesium-container" #cesiumContainer></div>  
 <div class="msg-container" [ngClass]="{ 'show-msg': showBaseMsg }">
-  <div class="msg">经度：{{ cameraMsg.lon }}</div>
-  <div class="msg">纬度：{{ cameraMsg.lat }}</div>
-  <div class="msg">海拔：{{ cameraMsg.ele }}</div>
-  <div class="msg">方向：{{ cameraMsg.head }}</div>
-  <div class="msg">视高：{{ cameraMsg.alt }}</div>
+  <div class="msg">经度：{{ cameraMsg?.lon }}</div>
+  <div class="msg">纬度：{{ cameraMsg?.lat }}</div>
+  <div class="msg">海拔：{{ cameraMsg?.ele }}</div>
+  <div class="msg">方向：{{ cameraMsg?.head }}</div>
+  <div class="msg">视高：{{ cameraMsg?.alt }}</div>
   <div></div>
 </div>
