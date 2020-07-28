@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { demoData } from './gallery-data';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +6,4 @@ import { demoData } from './gallery-data';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  isCollapsed = false;
-  demosData = demoData;
 }

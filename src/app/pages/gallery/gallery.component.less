@@ -1,0 +1,40 @@
+.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+
+.header-trigger {
+  height: 64px;
+  padding: 20px 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s, padding 0s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.demos-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-around;
+  flex-wrap: wrap;
+  .demo-card {
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+  }
+}

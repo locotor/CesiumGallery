@@ -1,0 +1,30 @@
+<nz-layout style="height: 100%;">
+    <!-- side navigation bar -->
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed">
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item *ngFor="let group of demosData">{{ group.title }}</li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <!-- site content container -->
+        <nz-content>
+            <div class="inner-content">
+                <ng-container *ngFor="let category of demosData">
+                    <div class="category">
+                        <h2 [id]="category.title" class="anchor">{{ category.title }}</h2>
+                        <div class="demos-container">
+                            <ng-container *ngFor="let demo of category.demos">
+                                <nz-card class="demo-card" nzHoverable [nzCover]="demoCoverTemplate">
+                                    <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
+                                </nz-card>
+                                <ng-template #demoCoverTemplate>
+                                    <img alt="example" [src]='demo.img' />
+                                </ng-template>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>

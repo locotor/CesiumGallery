@@ -1,42 +1,13 @@
 <nz-layout class="app-layout">
-  <!-- side navigation bar -->
-  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null">
-    <div class="sidebar-logo">
-      <i class="logo-icon" nz-icon nzType="global" nzTheme="outline"></i>
-      <h1>Cesium Gallery</h1>
+  <nz-header>
+    <div class="app-header">
+      <div class="app-logo">
+        <i class="logo-icon" nz-icon nzType="global" nzTheme="outline"></i>
+        <h1>Cesium Gallery</h1>
+      </div>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-menu-item *ngFor="let group of demosData">{{ group.title }}</li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-        </span>
-      </div>
-    </nz-header>
-    <!-- site content container -->
-    <nz-content>
-      <div class="inner-content">
-        <ng-container *ngFor="let category of demosData">
-          <div class="category">
-            <h2 [id]="category.title" class="anchor">{{ category.title }}</h2>
-            <div class="demos-container">
-              <ng-container *ngFor="let demo of category.demos">
-                <nz-card class="demo-card" nzHoverable [nzCover]="demoCoverTemplate">
-                  <nz-card-meta [nzTitle]="demo.title"></nz-card-meta>
-                </nz-card>
-                <ng-template #demoCoverTemplate>
-                  <img alt="example" [src]='demo.img' />
-                </ng-template>
-              </ng-container>
-            </div>
-          </div>
-        </ng-container>
-      </div>
-    </nz-content>
-  </nz-layout>
+  </nz-header>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
 </nz-layout>

@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './pages/app-routing.module';
 import { IconsProviderModule } from './icons-provider.module';
 import { SharedModule } from '@shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
 registerLocaleData(zh);
 
@@ -27,7 +28,8 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    PagesModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
