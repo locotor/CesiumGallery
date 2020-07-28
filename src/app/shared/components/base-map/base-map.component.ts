@@ -11,12 +11,17 @@ import { CameraProperty } from '@shared/models/map/camera-property';
 export class BaseMapComponent implements AfterViewInit {
 
   @Input() viewerOpts: CesiumViewerOption;
-  @Input() public showBaseMsg = false;
   @ViewChild('cesiumContainer') map: ElementRef;
   public viewer: any;
   private scene: any;
   private camera: any;
-  public cameraMsg: CameraProperty;
+  public cameraMsg: CameraProperty = {
+    lon: '',
+    lat: '',
+    ele: '',
+    head: '',
+    alt: ''
+  };
 
   constructor() { }
 
@@ -34,7 +39,6 @@ export class BaseMapComponent implements AfterViewInit {
   bindCameraEvent() {
     const toolHandler = new Cesium.ScreenSpaceEventHandler(this.scene.canvas);
     toolHandler.setInputAction(movement => {
-      if (!this.showBaseMsg) { return; }
       this.updateLonLatEvent(movement);
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
   }
