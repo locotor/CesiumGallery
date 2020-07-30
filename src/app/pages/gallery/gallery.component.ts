@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { demoData } from 'src/app/gallery-data';
+import { demoData } from './gallery-data';
 
 @Component({
   templateUrl: './gallery.component.html',
