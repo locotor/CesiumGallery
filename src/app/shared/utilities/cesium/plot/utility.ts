@@ -9,6 +9,14 @@ const Constants = {
 	ZERO_TOLERANCE: 1e-4
 };
 
+export const graphicIdentity = {
+
+	generateId() {
+		return (Math.random() * 10000000).toString(16).substr(0, 4) + '-' + (new Date()).getTime() + '-' + Math.random().toString().substr(2, 5);
+	}
+
+};
+
 export const CVT = {
 
 	cartesian2Pixel(cartesian, viewer) {
@@ -121,3 +129,4 @@ export const CVT = {
 		}
 	}
 };
+
